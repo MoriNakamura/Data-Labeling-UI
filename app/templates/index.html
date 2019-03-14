@@ -2,15 +2,13 @@
 <html lang="en">
 
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <title>Frank Causality Data Labeling</title>
   <script type="text/javascript" src="../static/js/main.js"></script>
   <link href="../static/css/index.css" rel="stylesheet" type="text/css">
 </head>
-<body onload="getData()">
+<body>
 
-<p >
-Your name: <input type="text" name="tagger_name">
-</p>
 
 <p id="med_word">
 The medicine word is in blue. 
@@ -20,10 +18,20 @@ The effect word is in red.
 </p>
 
 
-<h3>Text {{ _id }}</h3>
-<p id="labeling_text">{{ text }}</p>
+<h3 id="labeling_id">Text id</h3>
+<p id="labeling_text">text</p>
 
-<form>
+<form id="labelForm">
+
+<!--   <input type="text" name="data_id" id="data_id"> -->
+
+  <p >
+  Your name: <input type="text" name="tagger_name">
+  </p>
+
+  <input type="text" id="submit_id" name="_id" value="" readonl hidden>
+  <br>
+
   <h3>The relation between medicine word and effect word: </h3>
   <input type="radio" name="relation" id="smCheck" value="symptom_medicine" onclick="relationCheck();"> Medicine and its target symptom<br>
   
@@ -66,7 +74,7 @@ The effect word is in red.
   
   <br>
   
-  <input type="button" name="send" value="Send / Next" onclick="sendLabelAndNext();"/>
+  <input type="submit" value="Send and Label Next"/>
   
 </form>
 
