@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, Markup, jsonify
+from flask import Flask, render_template, request, Markup, jsonify, url_for, redirect
+# import flask_login
 
 # For dataset reading and writing
 import pandas as pd
@@ -23,12 +24,70 @@ def convert_str(data):
 
 
 
-app = Flask(__name__)
+app = Flask(__name__, instance_relative_config = True)
 
-@app.route('/')
+# login_manager = flask_login.LoginManager()
+# login_manager.init_app(app)
+
+# #dev
+# users = {'test': {'password': 'test'}}
+
+# class User(flask_login.UserMixin):
+#     pass
+
+
+# @login_manager.user_loader
+# def user_loader(email):
+#     if email not in users:
+#         return
+
+#     user = User()
+#     user.id = email
+#     return user
+
+
+# @login_manager.request_loader
+# def request_loader(request):
+#     email = request.form.get('email')
+#     if email not in users:
+#         return
+
+#     user = User()
+#     user.id = email
+
+#     # DO NOT ever store passwords in plaintext and always compare password
+#     # hashes using constant-time comparison!
+#     user.is_authenticated = request.form['password'] == users[email]['password']
+
+#     return user
+
+# # @app.route('/')
+# # def 
+
+# @app.route('/login', methods=['GET', 'POST'])
+# def login():
+#     if request.method == 'GET':
+#         return '''
+#                <form action='login' method='POST'>
+#                 <input type='text' name='email' id='email' placeholder='email'/>
+#                 <input type='password' name='password' id='password' placeholder='password'/>
+#                 <input type='submit' name='submit'/>
+#                </form>
+#                '''
+
+#     email = request.form['email']
+#     if request.form['password'] == users[email]['password']:
+#         user = User()
+#         user.id = email
+#         flask_login.login_user(user)
+#         return redirect(url_for('index'))
+
+#     return 'Bad login'
+
+@app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET'])
+# @flask_login.login_required
 def index():
-	
 	return render_template('index.html')
 
 @app.route('/getdata', methods=['GET'])

@@ -13,5 +13,7 @@ from app import app
 
 if __name__ == "__main__":
 	port = int(os.environ.get("PORT", 5000))
-	print(app)
-	app.run(host='0.0.0.0', port=port, debug=True)
+	app.debug = True
+	app.secret_key = 'dev'
+	# app.config.from_envvar('DATA_LABELING_SETTINGS')
+	app.run(host='0.0.0.0', port=port)
