@@ -28,24 +28,53 @@ function relationCheck() {
 
 $(document).ready(function(){
 	$.get('getdata', function(data) {
-		$('#labeling_id').text('Text '+data._id);
-		$('#labeling_text').html(data.text);
-		$('#submit_id').val(data._id);
+		$('#labelingID').text('Text '+data._id);
+		$('#labelingText').html(data.text);
+		$('#submitID').val(data._id);
 	});
+
+	$('#submitButton').on('click', function() {
+		if ($("#smCheck").is(':checked') && !($("input[name='outcome_symptom_medicine']:checked").val())) {
+			alert('Please select one outcome!');
+		}
+		else if ($("#msCheck").is(':checked') && !($("input[name='outcome_medicine_side']:checked").val())) {
+			alert('Please select one outcome!');
+		}
+		else if ($("#mwCheck").is(':checked') && !($("input[name='outcome_medicine_withdrawal']:checked").val())) {
+			alert('Please select one outcome!');
+		}
+		else {
+			$.post('submit', $('form#labelForm').serialize(), function(data) {
+		        $('#labelingID').text('Text '+data._id);
+				$('#labelingText').html(data.text);
+				$('#submitID').val(data._id);
+				$('input[name="relation"]').prop('checked', false);
+				$('input[name="outcome_symptom_medicine"]').prop('checked', false);
+				$('input[name="outcome_medicine_side"]').prop('checked', false);
+				$('input[name="outcome_medicine_withdrawal"]').prop('checked', false);
+				$('input[name="case"]').prop('checked', false);
+				$('input#caseDefaultRadio').prop('checked', true);
+				relationCheck();
+		       },
+		       'json' // I expect a JSON response
+		    );
+		}
+	});
+
 });
 
-$('#labelForm').submit(function(event) {
-	alert('lalala')
-	event.preventDefault();
-	var data = $(this).serialize();
+// $('#labelForm').submit(function(event) {
+// 	alert('lalala')
+// 	event.preventDefault();
+// 	var data = $(this).serialize();
 	
 
-	$.post('/submit', data, function(response) {
-		$('#labeling_id').text('Text '+response._id);
-		$('#labeling_text').html(response.text);
-		$('#submit_id').val(response._id);
-	});
-});
+// 	$.post('/submit', data, function(response) {
+// 		$('#labelingID').text('Text '+response._id);
+// 		$('#labelingText').html(response.text);
+// 		$('#submitID').val(response._id);
+// 	});
+// });
 
 // window.addEventListener("load", function() {
 // 	var XHR = new XMLHttpRequest();

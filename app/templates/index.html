@@ -10,38 +10,41 @@
 <body>
 
 
-<p id="med_word">
+<p id="medWord">
 The medicine word is in blue. 
 </p>
-<p id="effect_word">
+<p id="effectWord">
 The effect word is in red.
 </p>
 
 
-<h3 id="labeling_id">Text id</h3>
-<p id="labeling_text">text</p>
-
+<h3 id="labelingID">Text id</h3>
+<p id="labelingText">text</p>
+<br>
+<br>
+<br>
 <form id="labelForm">
 
 <!--   <input type="text" name="data_id" id="data_id"> -->
 
-  <p >
+  <p>
   Your name: <input type="text" name="tagger_name">
   </p>
 
-  <input type="text" id="submit_id" name="_id" value="" readonl hidden>
-  <br>
+  <input type="text" id="submitID" name="_id" value="" readonl hidden>
 
-  <h3>The relation between medicine word and effect word: </h3>
-  <input type="radio" name="relation" id="smCheck" value="symptom_medicine" onclick="relationCheck();"> Medicine and its target symptom<br>
-  
-  <input type="radio" name="relation" id="msCheck" value="medicine_side" onclick="relationCheck();"> Medicine and its side effect<br>
-  
-  <input type="radio" name="relation" id="mwCheck" value="medicine_withdrawal" onclick="relationCheck();"> Medicine and its withdrawal effect<br> 
-  
-  <input type="radio" name="relation" id="otherCheck" value="other" onclick="relationCheck();"> Other relation<br>
-  <input type="radio" name="relation" id="noneCheck" value="none" onclick="relationCheck();"> No relation<br>
-  <br>
+
+  <fieldset>
+    <h3>The relation between medicine word and effect word: </h3>
+    <input type="radio" name="relation" id="smCheck" value="symptom_medicine" onclick="relationCheck();"> Medicine and its target symptom<br>
+    
+    <input type="radio" name="relation" id="msCheck" value="medicine_side" onclick="relationCheck();"> Medicine and its side effect<br>
+    
+    <input type="radio" name="relation" id="mwCheck" value="medicine_withdrawal" onclick="relationCheck();"> Medicine and its withdrawal effect<br> 
+    
+    <input type="radio" name="relation" id="otherCheck" value="other" onclick="relationCheck();"> Other relation<br>
+    <input type="radio" name="relation" id="noneCheck" value="none" onclick="relationCheck();"> No relation<br>
+  </fieldset>
   
   <fieldset id="smOutcome">
     <h3>The outcome of the relation: </h3>
@@ -54,8 +57,8 @@ The effect word is in red.
   <fieldset id="msOutcome">
     <h3>The outcome of the relation: </h3>
     <input type="radio" name="outcome_medicine_side" value="caused"> CAUSED: The side effect is caused by the medicine<br>
-    <input type="radio" name="outcome_midicine_side" value="not_caused"> NOT CAUSED: The side effect is NOT caused/did not happen by the medicine<br>
-    <input type="radio" name="outcome_midicine_side" value="unknown"> Connot determine / unknown<br>
+    <input type="radio" name="outcome_medicine_side" value="not_caused"> NOT CAUSED: The side effect is NOT caused/did not happen by the medicine<br>
+    <input type="radio" name="outcome_medicine_side" value="unknown"> Connot determine / unknown<br>
   </fieldset>
   
   <fieldset id="mwOutcome">
@@ -69,12 +72,12 @@ The effect word is in red.
     <h3>The case of the relation: </h3>
     <input type="radio" name="case" value="instance"> INSTANCE: The relation is described in a real case or instance<br>
     <input type="radio" name="case" value="knowledge"> KNOWLEDGE: The relation is described in a reference of knowledge, article or data etc.<br>
-    <input type="radio" name="case" value="null" checked="checked"> Unknown or diferent from any of the options above<br>
+    <input type="radio" name="case" id="caseDefaultRadio" value="null" checked="checked"> Unknown or diferent from any of the options above<br>
   </fieldset>
   
   <br>
   
-  <input type="submit" value="Send and Label Next"/>
+  <input type="button" id="submitButton" value="Send and Label Next"/>
   
 </form>
 
