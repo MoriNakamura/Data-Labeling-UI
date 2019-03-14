@@ -16,7 +16,7 @@ When I have some time, I will attempt to add more features such as login.
 First, clone it.
 
     $ git clone https://github.com/phejimlin/esun_hackathon.git
-    $ cd esun_hackathon
+    $ cd Data-Labeling-UI
 
 Create a virtualenv, and activate this: 
 
