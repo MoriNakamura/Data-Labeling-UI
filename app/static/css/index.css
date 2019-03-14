@@ -1,0 +1,31 @@
+h3 {
+	text-align: center;
+}
+
+#med_word {
+	color: blue;
+}
+
+#effect_word {
+	color: red;
+}
+
+#smOutcome {
+	display: none;
+}
+
+#msOutcome {
+	display: none;
+}
+
+#mwOutcome {
+	display: none;
+}
+
+#case {
+	display: none;
+}
+
+span.medicine { color:blue;font-weight:bold}
+
+span.effect { color:red;font-weight:bold}

@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><title>Frank Causality Data Labeling</title></head>
-<body>
 
-<p>
+<head>
+  <title>Frank Causality Data Labeling</title>
+  <script type="text/javascript" src="../static/js/main.js"></script>
+  <link href="../static/css/index.css" rel="stylesheet" type="text/css">
+</head>
+<body onload="getData()">
+
+<p >
 Your name: <input type="text" name="tagger_name">
 </p>
 
@@ -15,19 +20,19 @@ The effect word is in red.
 </p>
 
 
-<h3>Text id: </h3>
-<p id="labeling_text">The text for labeling</p>
+<h3>Text {{ _id }}</h3>
+<p id="labeling_text">{{ text }}</p>
 
 <form>
   <h3>The relation between medicine word and effect word: </h3>
-  <input type="radio" name="relation" id="smCheck" value="symptom_medicine" onclick="javascript:relationCheck();"> Medicine and its target symptom<br>
+  <input type="radio" name="relation" id="smCheck" value="symptom_medicine" onclick="relationCheck();"> Medicine and its target symptom<br>
   
-  <input type="radio" name="relation" id="msCheck" value="medicine_side"> Medicine and its side effect<br>
+  <input type="radio" name="relation" id="msCheck" value="medicine_side" onclick="relationCheck();"> Medicine and its side effect<br>
   
-  <input type="radio" name="relation" id="mwCheck" value="medicine_withdrawal"> Medicine and its withdrawal effect<br> 
+  <input type="radio" name="relation" id="mwCheck" value="medicine_withdrawal" onclick="relationCheck();"> Medicine and its withdrawal effect<br> 
   
-  <input type="radio" name="relation" id="otherCheck" value="other"> Other relation<br>
-  <input type="radio" name="relation" id="noneCheck" value="none"> No relation<br>
+  <input type="radio" name="relation" id="otherCheck" value="other" onclick="relationCheck();"> Other relation<br>
+  <input type="radio" name="relation" id="noneCheck" value="none" onclick="relationCheck();"> No relation<br>
   <br>
   
   <fieldset id="smOutcome">
@@ -45,7 +50,7 @@ The effect word is in red.
     <input type="radio" name="outcome_midicine_side" value="unknown"> Connot determine / unknown<br>
   </fieldset>
   
-  <fieldset id="swOutcome">
+  <fieldset id="mwOutcome">
     <h3>The outcome of the relation: </h3>
     <input type="radio" name="outcome_medicine_withdrawal" value="caused"> CAUSED: The withdrawal effect is caused by quitting or reducing the medicine<br>
     <input type="radio" name="outcome_medicine_withdrawal" value="not_caused"> NOT CAUSED: The withdrawal effect is NOT caused/did not happen by quitting or reducing the medicine<br>
@@ -56,17 +61,14 @@ The effect word is in red.
     <h3>The case of the relation: </h3>
     <input type="radio" name="case" value="instance"> INSTANCE: The relation is described in a real case or instance<br>
     <input type="radio" name="case" value="knowledge"> KNOWLEDGE: The relation is described in a reference of knowledge, article or data etc.<br>
-    <input type="radio" name="case" value="null"> Unknown or diferent from any of the options above<br>
+    <input type="radio" name="case" value="null" checked="checked"> Unknown or diferent from any of the options above<br>
   </fieldset>
   
   <br>
   
-  <input type="button" name="send" value="Send / Next"/>
+  <input type="button" name="send" value="Send / Next" onclick="sendLabelAndNext();"/>
   
 </form>
-
-
-<script src="../static/js/main.js"></script>
 
 </body>
 </html>
